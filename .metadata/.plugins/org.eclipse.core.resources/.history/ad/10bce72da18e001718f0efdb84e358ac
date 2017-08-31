@@ -1,0 +1,27 @@
+/*
+ * http://www.informit.com/articles/article.aspx?p=2008905
+ */
+
+import java.util.HashMap;
+import java.util.Iterator;
+
+i
+public class MapReduce {
+	public MapReduce() {
+		// TODO Auto-generated constructor stub
+	}
+	public void map(String name, String sentence , HashMap<String, Integer>output)
+	{
+		String[]words= sentence.split(" ");
+		for(String word: words)
+		{
+			if(!output.containsKey(word))
+				output.put(word, 1);
+		}
+	}
+	public void reduce(HashMap<String, Integer>output) {
+		int sum=0;
+		Iterator it= output.entrySet().iterator();
+	}
+
+}

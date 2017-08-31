@@ -1,0 +1,72 @@
+/*
+ * http://www.informit.com/articles/article.aspx?p=2008905
+ */
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
+
+
+public class MapReduce {
+	
+	HashMap<String, Integer> mainMap=new HashMap<>();
+	
+	public MapReduce() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public String toString() {
+		String s= mainMap.toString();
+		return s;
+	}
+
+	public void execute(String fileName) {
+		try {
+			for(String sentence:getFile(fileName))
+			{
+				MapAndReduce(sentence, this.mainMap);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public LinkedList<String> getFile(String arg) throws IOException
+	{
+		LinkedList<String> lines= new LinkedList<>();
+		for (String line : Files.readAllLines(Paths.get(arg))) {
+			lines.add(line);
+		}
+		return lines;
+	}
+	public void MapAndReduce(String sentence , HashMap<String, Integer>output)
+	{
+		String[]words= sentence.split(" ");
+		for(String word: words)
+		{
+			if(!output.containsKey(word))
+				output.put(word, 1);
+			else {
+				int hold=output.get(word);
+				output.put(word, hold++);
+			}
+		}
+	}
+//	public void reduce(HashMap<String, Integer>output) {
+//		int sum=0;
+//		Iterator it= output.entrySet().iterator();
+//		
+//		while(it.hasNext())
+//		{
+//			Map.Entry pair = (Map.Entry)it.next();
+//	        //System.out.println(pair.getKey() + " = " + pair.getValue());
+//	        it.remove(); // avoids a ConcurrentModificationException 
+//		}
+//	}
+
+}

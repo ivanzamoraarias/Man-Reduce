@@ -1,0 +1,92 @@
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class main {
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ProgramView app= new ProgramView();
+		app.makeView();
+
+	}
+	public static class ProgramView
+	{
+		JTextArea messageArea= new JTextArea();
+		public ProgramView() {
+			// TODO Auto-generated constructor stub
+		}
+		public void makeView()
+		{
+			JFrame f=new JFrame();//creating instance of JFrame  
+			
+			f.setLayout(new BorderLayout());
+			
+			JLabel background = new JLabel(new ImageIcon("lamp.jpg"));
+			f.add(background);
+			
+			background.setLayout(new FlowLayout());
+	        
+			JButton b=new JButton("click");//creating instance of JButton  
+			b.addActionListener(new ClickActionListener());
+			b.setBounds(100,150,100, 40);//x axis, y axis, width, height  
+			
+			f.add(b);//adding button in JFrame  
+	        //f.add(arg0)
+			
+			f.setSize(300,300);//400 width and 500 height  
+			f.setLayout(null);//using no layout managers  
+			f.setVisible(true);//making the frame visible  
+		}
+		public class ClickActionListener implements ActionListener
+		{
+			public ClickActionListener() {
+				// TODO Auto-generated constructor stub
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//String[] args = new String[] {"/bin/bash", "-c", "your_command", "with", "args"};
+//				try {
+//					Process proc = new ProcessBuilder("service apache2 start").start();
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				try {
+//					Process proc2 = new ProcessBuilder("service mysql start").start();
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+				 //TODO Auto-generated method stub
+				try {
+					Runtime.getRuntime().exec("service apache2 start");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					Runtime.getRuntime().exec("service mysql start");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
+		}
+	}
+
+	
+}

@@ -1,0 +1,19 @@
+import java.util.HashMap;
+
+public class MapReduce {
+	public MapReduce() {
+		// TODO Auto-generated constructor stub
+	}
+	public void map(String name, String sentence , HashMap<String, Integer>output)
+	{
+		String[]words= sentence.split(" ");
+		for(String word: words)
+		{
+			
+		}
+	}
+	public void redure() {
+		
+	}
+
+}

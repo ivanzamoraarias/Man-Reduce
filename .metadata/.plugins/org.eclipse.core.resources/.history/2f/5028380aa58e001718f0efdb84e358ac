@@ -1,0 +1,47 @@
+/*
+ * http://www.informit.com/articles/article.aspx?p=2008905
+ */
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
+
+
+public class MapReduce {
+	
+	LinkedList<String> lines= new LinkedList<>();
+	
+	public MapReduce() {
+		// TODO Auto-generated constructor stub
+	}
+	public void getFile(String arg)
+	{
+		
+	}
+	public void execute(String name, String sentence , HashMap<String, Integer>output)
+	{
+		String[]words= sentence.split(" ");
+		for(String word: words)
+		{
+			if(!output.containsKey(word))
+				output.put(word, 1);
+			else {
+				int hold=output.get(word);
+				output.put(word, hold++);
+			}
+		}
+	}
+//	public void reduce(HashMap<String, Integer>output) {
+//		int sum=0;
+//		Iterator it= output.entrySet().iterator();
+//		
+//		while(it.hasNext())
+//		{
+//			Map.Entry pair = (Map.Entry)it.next();
+//	        //System.out.println(pair.getKey() + " = " + pair.getValue());
+//	        it.remove(); // avoids a ConcurrentModificationException 
+//		}
+//	}
+
+}

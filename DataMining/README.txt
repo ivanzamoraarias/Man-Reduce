@@ -1,0 +1,1 @@
+Man And Reduce Philosophy
